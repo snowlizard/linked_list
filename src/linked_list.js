@@ -30,9 +30,15 @@ class LinkedList {
      * @param {i} index of item to remove.  
      */
     remove(i) {
-
+        // your code here
     }
 
+    /**
+     * Return the length of the list
+     */
+    length() {
+        // your code here
+    }
 }
 
 module.exports = LinkedList;

@@ -13,4 +13,14 @@ describe('Linked List', function () {
       assert.equal(ll.insert(1, "a"), false);
     });
   });
+
+  describe('#length()', function() {
+    it('should return the length of a list', () => {
+      ll = new LinkedList();
+      ll.insert(0, "a");
+      ll.insert(0, "b");
+      ll.insert(0, "c");
+      assert.equal(ll.length(), 3);
+    });
+  })
 });
