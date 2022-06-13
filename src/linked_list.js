@@ -8,8 +8,8 @@ const Node = require('./node');
 class LinkedList {
     
     constructor() {
-        this.tail = new Node(null, null, -2);
-        this.head = new Node(null, this.tail, -1);
+        this.tail = new Node(null, null, 'z');
+        this.head = new Node(null, this.tail, 'a');
     }
 
     /**
@@ -24,18 +24,23 @@ class LinkedList {
      */
     insert(i, str) {
         if(i >= 0 && i <= this.length()){
-            let prevNode = this.getNode(i-1);
+            let prevNode;
             let currentNode = this.getNode(i);
+
+            i - 1 > 0 ? prevNode = this.getNode(i-1) :
+            prevNode = this.getNode('a');
+
             if(currentNode){
                 let newNode = new Node(str, currentNode, i);
-                prevNode.setNext(newNode);
+                prevNode.next = newNode;
             } else {
                 let newNode = new Node(str, this.tail, i);
-                prevNode.setNext(newNode);
+                prevNode.next = newNode;
             }
+            
             this.resetIndexes();
             console.log(this.head, '--------');
-            return prevNode.getNext().getValue();
+            return prevNode.next.value;
         } else {
             return false;
         }
@@ -50,7 +55,7 @@ class LinkedList {
         const prevNode   = this.getNode(i-1);
         const deleteNode = this.getNode(i);
         if(deleteNode){
-            prevNode.setNext(deleteNode.getNext())
+            prevNode.next = deleteNode.next;
         } else {
             return false;
         }
@@ -60,11 +65,11 @@ class LinkedList {
      * Return the length of the list
      */
     length() {
-        let node = this.head.getNext();
+        let node = this.head.next;
         let counter = 0;
-        while(node.getNext()){
+        while(node.next){
             counter++;
-            node = node.getNext();
+            node = node.next;
         }
         return counter
     }
@@ -76,23 +81,22 @@ class LinkedList {
      * at that index
      */
     getNode(i) {
-        if (i < -2 || i > this.length()) return null;
+        if (i > this.length()) return null;
         let node = this.head
-        while(node.getNext() && node.getIndex() !== i){
-            node = node.getNext();
+        while(node.next && node.index !== i){
+            node = node.next;
         }
         return node ? node : null;
     }
 
     resetIndexes(){
-        let node = this.head.getNext();
+        let node = this.head.next;
         let counter = 0;
-        while(node !== null && node.getIndex() !== -2){
-            node.setIndex(counter);
+        while(node !== null && node.index !== 'z'){
+            node.index = counter;
             counter++;
-            node = node.getNext();
+            node = node.next;
         }
-        
     }
 }
 
