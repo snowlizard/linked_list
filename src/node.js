@@ -1,8 +1,8 @@
 class Node {
-    constructor(value, next, index){
+    constructor(value, next, end = false){
         this.value = value;
         this.next  = next;
-        this.index = index;
+        this.end   = end;
     };
 }
 
