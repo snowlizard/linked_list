@@ -86,7 +86,7 @@ class LinkedList {
         while(node.next && node.index !== i){
             node = node.next;
         }
-        return node ? node : null;
+        return node.index !== i ? null : node ? node : null;
     }
 
     resetIndexes(){

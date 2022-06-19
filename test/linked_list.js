@@ -1,6 +1,7 @@
 LinkedList = require('../src/linked_list');
 
 var assert = require('assert');
+
 describe('Linked List', function () {
   describe('#insert()', function () {
     it('should return the inserted value after successfully inserting at index 0', function () {
@@ -22,5 +23,17 @@ describe('Linked List', function () {
       ll.insert(0, "c");
       assert.equal(ll.length(), 3);
     });
+
+    it('should return 0 on an empty list', () => {
+      ll = new LinkedList();
+      assert.equal(ll.length(), 0);
+    })
+  })
+
+  describe('#getNode()', () => {
+    it('should return null on an empty linked list.', () => {
+      ll = new LinkedList();
+      assert.equal(ll.getNode(0), null);
+    })
   })
 });
