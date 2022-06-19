@@ -8,8 +8,8 @@ const Node = require('./node');
 class LinkedList {
     
     constructor() {
-        this.tail = new Node(null, null, 'z');
-        this.head = new Node(null, this.tail, 'a');
+        this.tail = new Node(null, null, true);
+        this.head = new Node(null, this.tail, true);
     }
 
     /**
@@ -28,18 +28,16 @@ class LinkedList {
             let currentNode = this.getNode(i);
 
             i - 1 > 0 ? prevNode = this.getNode(i-1) :
-            prevNode = this.getNode('a');
+            prevNode = this.head;
 
             if(currentNode){
-                let newNode = new Node(str, currentNode, i);
+                let newNode = new Node(str, currentNode);
                 prevNode.next = newNode;
             } else {
-                let newNode = new Node(str, this.tail, i);
+                let newNode = new Node(str, this.tail);
                 prevNode.next = newNode;
             }
             
-            this.resetIndexes();
-            console.log(this.head, '--------');
             return prevNode.next.value;
         } else {
             return false;
@@ -64,10 +62,11 @@ class LinkedList {
     /**
      * Return the length of the list
      */
-    length() {
+    length(print = false) {
         let node = this.head.next;
         let counter = 0;
-        while(node.next){
+        while(!node.end){
+            print ? console.log('-'.repeat(counter), node.value) : '';
             counter++;
             node = node.next;
         }
@@ -82,21 +81,15 @@ class LinkedList {
      */
     getNode(i) {
         if (i > this.length()) return null;
-        let node = this.head
-        while(node.next && node.index !== i){
-            node = node.next;
-        }
-        return node.index !== i ? null : node ? node : null;
-    }
+        let node = this.head;
+        let counter = -1;
 
-    resetIndexes(){
-        let node = this.head.next;
-        let counter = 0;
-        while(node !== null && node.index !== 'z'){
-            node.index = counter;
+        while(counter !== i && node.next){
             counter++;
             node = node.next;
         }
+
+        return node.end ? null : node;
     }
 }
 
