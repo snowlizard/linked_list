@@ -83,6 +83,10 @@ class LinkedList {
         if (i > this.length()) return null;
         let node = this.head;
         let counter = -1;
+        let reverse = false;
+        
+        i < 0 ? (counter = (this.length() +1) * -1 , reverse = true) :
+        counter = -1;
 
         while(counter !== i && node.next){
             counter++;

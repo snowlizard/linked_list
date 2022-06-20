@@ -50,7 +50,7 @@ describe('Linked List', function () {
       ll.insert(0, 'a');
       ll.insert(0, 'b');
       ll.insert(0, 'c');
-      assert.equal(ll.getNode(-2).value, 'c');
+      assert.equal(ll.getNode(-3).value, 'c');
     });
   });
 
