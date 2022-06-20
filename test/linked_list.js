@@ -44,6 +44,14 @@ describe('Linked List', function () {
       ll.insert(0, 'c');
       assert.equal(ll.getNode(1).value, 'b');
     });
+
+    it('should give the index in reverse when given a negative number', () => {
+      ll = new LinkedList();
+      ll.insert(0, 'a');
+      ll.insert(0, 'b');
+      ll.insert(0, 'c');
+      assert.equal(ll.getNode(-2).value, 'c');
+    });
   });
 
 });
